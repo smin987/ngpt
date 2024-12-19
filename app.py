@@ -15,11 +15,11 @@ st.markdown(
     Here are the apps I made:
 
     -  [x] [📄DocumentGPT](http://smin987.streamlit.app/DocumentGPT)
-    # -  [ ] [🔒PrivateGPT](http://smin987.streamlit.app/PrivateGPT)
-    # -  [ ] [❓QuizGPT](http://smin987.streamlit.app/QuizGPT)
-    # -  [ ] [🖥️SiteGPT](http://smin987.streamlit.app/SiteGPT)
-    # -  [ ] [🕓MeetingGPT](http://smin987.streamlit.app/MeetingGPT)
-    # -  [ ] [💰InvestorGPT](http://smin987.streamlit.app/InvestorGPT)
+    -  [ ] [🔒PrivateGPT]
+    -  [ ] [❓QuizGPT]
+    -  [ ] [🖥️SiteGPT]
+    -  [ ] [🕓MeetingGPT]
+    -  [ ] [💰InvestorGPT]
     """
 )
 # with st.sidebar:
