@@ -1,0 +1,8 @@
+.streamlit/
+.vs/
+.vscode/
+files/**
+.env
+env/
+*.bin
+git
