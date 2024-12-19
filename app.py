@@ -14,12 +14,12 @@ st.markdown(
     Welcome to my FullstackGPT Portfolio!
     Here are the apps I made:
 
-    -  [x] [📄DocumentGPT](http://localhost:8501/DocumentGPT)
-    -  [ ] [🔒PrivateGPT](http://localhost:8501/PrivateGPT)
-    -  [x] [❓QuizGPT](http://localhost:8501/QuizGPT)
-    -  [x] [🖥️SiteGPT](http://localhost:8501/SiteGPT)
-    -  [x] [🕓MeetingGPT](http://localhost:8501/MeetingGPT)
-    -  [ ] [💰InvestorGPT](http://localhost:8501/InvestorGPT)
+    -  [x] [📄DocumentGPT](http://smin987.streamlit.app/DocumentGPT)
+    # -  [ ] [🔒PrivateGPT](http://smin987.streamlit.app/PrivateGPT)
+    # -  [ ] [❓QuizGPT](http://smin987.streamlit.app/QuizGPT)
+    # -  [ ] [🖥️SiteGPT](http://smin987.streamlit.app/SiteGPT)
+    # -  [ ] [🕓MeetingGPT](http://smin987.streamlit.app/MeetingGPT)
+    # -  [ ] [💰InvestorGPT](http://smin987.streamlit.app/InvestorGPT)
     """
 )
 # with st.sidebar:
