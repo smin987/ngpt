@@ -1,6 +1,4 @@
 import streamlit as st
-
-# from altair import LocalMultiTimeUnit
 from langchain.callbacks.base import BaseCallbackHandler
 from langchain.chat_models import ChatOpenAI
 from langchain.document_loaders import UnstructuredFileLoader
@@ -31,13 +29,13 @@ class ChatCallBackHandler(BaseCallbackHandler):
         self.message_box.markdown(self.message)
 
 
-llm = ChatOpenAI(
-    temperature=0.1,
-    streaming=True,
-    callbacks=[
-        ChatCallBackHandler(),
-    ],
-)
+# llm = ChatOpenAI(
+#     temperature=0.1,
+#     streaming=True,
+#     callbacks=[
+#         ChatCallBackHandler(),
+#     ],
+# )
 
 if "messages" not in st.session_state:
     st.session_state["messages"] = []
@@ -121,10 +119,46 @@ st.markdown(
 )
 
 with st.sidebar:
-    file = st.file_uploader(
-        "Upload a.txt .pdf. or .docx file",
-        type=["pdf", "txt", "docx"],
+
+    # API KEY 입력받기
+    openai_api_key = st.text_input(
+        "Enter your OpenAI API Key",
+        type="password",
+        help="OpenAI에서 발급하는 API KEY를 입력하세요. API KEY를 입력해야만 AI에게 응답을 받을수 있습니다. API KEY가 없다면 다음의 Link를 방문해서 발급받으세요. https://platform.openai.com/docs/api-reference/introduction",
     )
+
+    # API KEY Setting
+    if openai_api_key:
+        st.session_state.openai_api_key = openai_api_key
+        st.success("API Key has been set.")
+    else:
+        if "openai_api_key" in st.session_state:
+            openai_api_key = st.session_state.openai_api_key
+        else:
+            st.warning("Please enter your OpenAI API Key.")
+
+    if openai_api_key:
+        llm = ChatOpenAI(
+            temperature=0.1,
+            streaming=True,
+            callbacks=[
+                ChatCallBackHandler(),
+            ],
+            api_key=openai_api_key,
+        )
+    else:
+        llm = None
+
+    if openai_api_key:
+        file = st.file_uploader(
+            "Upload a.txt .pdf. or .docx file",
+            type=["pdf", "txt", "docx"],
+        )
+    else:
+        file = st.file_uploader(
+            "API KEY Required",
+            disabled=True,
+        )
 
 if file:
     retriever = embed_file(file)

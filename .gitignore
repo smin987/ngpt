@@ -6,3 +6,10 @@ files/**
 env/
 *.bin
 git
+.cache/embeddings/*.txt
+.cache/embeddings/*.pdf
+.cache/embeddings/*.docx
+.cache/files/\[K-DATA] 빅데이터분석기사 실기시험 응시가이드.pdf
+.cache/files/개인정보 비식별화 안내서.pdf
+.cache/files/chapter_one.txt
+.cache/files/document.txt
