@@ -58,7 +58,7 @@ def embed_file(file):
     )
     loader = UnstructuredFileLoader(file_path)
     docs = loader.load_and_split(text_splitter=splitter)
-    embeddings = OpenAIEmbeddings()
+    embeddings = OpenAIEmbeddings(api_key=st.session_state.openai_api_key)
     # .cache에 저장된 embedding문서가 있으면 cache값을 읽어오고, 없으면 cache를 새로 만든다.
     cached_embaddings = CacheBackedEmbeddings.from_bytes_store(embeddings, cache_dir)
     vectorstore = FAISS.from_documents(docs, cached_embaddings)
