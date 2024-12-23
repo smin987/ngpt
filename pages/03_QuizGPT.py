@@ -164,12 +164,9 @@ with st.sidebar:
         formatting_chain = prompt | llm
     else:
         llm = None
-
-    # chain 세팅
-    # if llm:
-    #     formatting_chain = prompt | llm
     # LLM 설정 끝------------
 
+    # 난이도 선택
     level = st.selectbox(
         "Choose the level of difficulty.",
         (
@@ -188,6 +185,7 @@ with st.sidebar:
     else:
         st.warning("Please select a difficulty level first. Default is Medium")
 
+    # 이용목적 선택
     if openai_api_key:
         choice = st.selectbox(
             "Choose what you want to use.",
@@ -203,6 +201,7 @@ with st.sidebar:
             disabled=True,
         )
 
+    # 파일 입력칸
     if choice == "File":
         file = st.file_uploader(
             "Upload a .docx, .txt or .pdf file",
@@ -211,14 +210,20 @@ with st.sidebar:
         if file:
             docs = split_file(file)
 
-    else:
+    # wiki 검색칸
+    elif choice == "Wikipedia Article":
         topic = st.text_input("Search Wikipedia..")
         if topic:
             docs = wiki_search(topic)
+    else:
+        st.text_input(
+            label="Search Wikipedia..", value="API KEY Required", disabled=True
+        )
+
     # github link
     st.write("**Github Repo:**   (https://github.com/smin987/ngpt)")
 
-
+# 이용 안내문
 if not docs:
     st.markdown(
         """
