@@ -15,7 +15,6 @@ st.markdown(
     Here are the apps I made:
 
     -  [x] [📄DocumentGPT](http://smin987.streamlit.app/DocumentGPT)
-    -  [ ] [🔒PrivateGPT]
     -  [x] [❓QuizGPT](http://smin987.streamlit.app/QuizGPT)
     -  [x] [🖥️SiteGPT](http://smin987.streamlit.app/SiteGPT)
     -  [ ] [🕓MeetingGPT]
