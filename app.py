@@ -17,7 +17,7 @@ st.markdown(
     -  [x] [📄DocumentGPT](http://smin987.streamlit.app/DocumentGPT)
     -  [ ] [🔒PrivateGPT]
     -  [x] [❓QuizGPT](http://smin987.streamlit.app/QuizGPT)
-    -  [ ] [🖥️SiteGPT]
+    -  [x] [🖥️SiteGPT](http://smin987.streamlit.app/SiteGPT)
     -  [ ] [🕓MeetingGPT]
     -  [ ] [💰InvestorGPT]
     """

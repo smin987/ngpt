@@ -136,6 +136,30 @@ def load_website(url):
     return vector_store.as_retriever()
 
 
+if "messages" not in st.session_state:
+    st.session_state["messages"] = []
+
+
+def send_message(message, role, save=True):
+    with st.chat_message(role):
+        st.markdown(message)
+    if save:
+        save_message(message, role)
+
+
+def save_message(message, role):
+    st.session_state["messages"].append({"message": message, "role": role})
+
+
+def paint_history():
+    for message in st.session_state["messages"]:
+        send_message(
+            message["message"],
+            message["role"],
+            save=False,
+        )
+
+
 st.set_page_config(
     page_title="SiteGPT",
     page_icon="🖥️",
@@ -217,8 +241,15 @@ if url:
             st.error("Please write down a Sitemap URL.")
     else:
         retriever = load_website(url)
-        query = st.text_input("Ask a question about the website.")
+        # 이전 대화기록 표시
+        paint_history()
+        query = st.chat_input("Ask a question about the website.")
+
         if query:
+
+            # 사용자 질문 저장 및 표시
+            send_message(query, "human")
+
             chain = (
                 {
                     "docs": retriever,
@@ -229,4 +260,6 @@ if url:
             )
 
             result = chain.invoke(query)
-            st.markdown(result.content.replace("$", "\\$"))
+
+            # AI의 답변 저장 및 표시
+            send_message(result.content.replace("$", "\\$"), "AI")
