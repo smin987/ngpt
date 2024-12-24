@@ -181,11 +181,11 @@ with st.sidebar:
         ),
     )
     if level == "Easy":
-        st.warning("You choose level is Easy")
+        st.success("You choose level is Easy")
     elif level == "Medium":
-        st.warning("You choose level is Medium")
+        st.success("You choose level is Medium")
     elif level == "Hard":
-        st.warning("You choose level is Hard")
+        st.success("You choose level is Hard")
     else:
         st.warning("Please select a difficulty level first. Default is Medium")
 
