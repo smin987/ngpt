@@ -166,7 +166,7 @@ with st.sidebar:
         llm = None
     # LLM 설정 끝------------
 
-    # 난이도 선택
+    # 시험 난이도 선택
     level = st.selectbox(
         "Choose the level of difficulty.",
         (
