@@ -136,7 +136,7 @@ with st.sidebar:
     openai_api_key = ""
 
     # API KEY 입력받기
-    if st.session_state:
+    if "openai_api_key" in st.session_state:
         st.success("API Key has been set.")
     else:
         openai_api_key = st.text_input(

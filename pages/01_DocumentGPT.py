@@ -122,7 +122,7 @@ with st.sidebar:
     openai_api_key = ""
 
     # API KEY 입력받기
-    if st.session_state:
+    if "openai_api_key" in st.session_state:
         st.success("API Key has been set.")
     else:
         openai_api_key = st.text_input(
@@ -131,7 +131,7 @@ with st.sidebar:
             help="OpenAI에서 발급하는 API KEY를 입력하세요. API KEY를 입력해야만 AI에게 응답을 받을수 있습니다. API KEY가 없다면 다음의 Link를 방문해서 발급받으세요. https://platform.openai.com/docs/api-reference/introduction",
         )
 
-    # API KEY Setting
+    # API KEY is TRUE
     if openai_api_key:
         st.session_state.openai_api_key = openai_api_key
         st.success("API Key has been set.")
