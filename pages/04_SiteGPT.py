@@ -180,6 +180,7 @@ with st.sidebar:
     # API KEY is TRUE
     if openai_api_key:
         st.session_state.openai_api_key = openai_api_key
+        st.success("API Key has been set.")
     else:
         if "openai_api_key" in st.session_state:
             openai_api_key = st.session_state.openai_api_key
