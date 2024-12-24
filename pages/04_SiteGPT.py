@@ -204,6 +204,9 @@ with st.sidebar:
             placeholder="API KEY Required",
         )
 
+    # github link
+    st.write("**Github Repo:**   (https://github.com/smin987/ngpt)")
+
 if url:
     if ".xml" not in url:
         with st.sidebar:
