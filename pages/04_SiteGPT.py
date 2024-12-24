@@ -9,6 +9,7 @@ from langchain.prompts import ChatPromptTemplate
 from langchain.schema.runnable import RunnableLambda, RunnablePassthrough
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.vectorstores.faiss import FAISS
+from openai.error import APIError, AuthenticationError
 
 answers_prompt = ChatPromptTemplate.from_template(
     """
@@ -160,6 +161,23 @@ def paint_history():
         )
 
 
+def validate_api_key(api_key: str) -> bool:
+    """
+    OpenAI API 키의 유효성을 검사하는 함수
+    """
+    try:
+        client = ChatOpenAI(api_key=api_key)
+        # 간단한 API 호출로 키 유효성 검사
+        client.predict("Hello, world!")
+        return True
+    except AuthenticationError:
+        return False
+    except APIError:
+        return False
+    except Exception:
+        return False
+
+
 st.set_page_config(
     page_title="SiteGPT",
     page_icon="🖥️",
@@ -189,7 +207,7 @@ else:
     ]
 
 with st.sidebar:
-    openai_api_key = ""
+    openai_api_key = None
 
     # API KEY 입력받기
     if "openai_api_key" in st.session_state:
@@ -201,10 +219,14 @@ with st.sidebar:
             help="OpenAI에서 발급하는 API KEY를 입력하세요. API KEY를 입력해야만 AI에게 응답을 받을수 있습니다. API KEY가 없다면 다음의 Link를 방문해서 발급받으세요. https://platform.openai.com/docs/api-reference/introduction",
         )
 
-    # API KEY is TRUE
+    # API KEY 유효성 검사
     if openai_api_key:
-        st.session_state.openai_api_key = openai_api_key
-        st.success("API Key has been set.")
+        if validate_api_key(openai_api_key):
+            st.session_state.openai_api_key = openai_api_key
+            st.success("API Key has been set.")
+        else:
+            st.warning("Invalid API Key.")
+            openai_api_key = None
     else:
         if "openai_api_key" in st.session_state:
             openai_api_key = st.session_state.openai_api_key
@@ -215,6 +237,7 @@ with st.sidebar:
         llm = ChatOpenAI(
             temperature=0.1,
             model="gpt-4o-mini",
+            streaming=True,
             api_key=openai_api_key,
         )
     else:
