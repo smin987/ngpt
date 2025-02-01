@@ -123,7 +123,6 @@ def load_website(url):
         url,
         # 필터로 가져올 url을 정할수 있다.
         filter_urls=[
-            # "https://developers.cloudflare.com/ai-gateway/",
             # 정규식 적용가능
             r"^(.*\/ai-gateway\/).*",
             r"^(.*\/vectorize\/).*",
